@@ -3,7 +3,7 @@ package com.example.kocsistemcase.data.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ItunesResponse(
+data class MusicResponse(
     @SerializedName("resultCount")
     val resultCount: Int,
     @SerializedName("results")

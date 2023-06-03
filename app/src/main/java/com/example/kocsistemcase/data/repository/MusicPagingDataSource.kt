@@ -3,20 +3,20 @@ package com.example.kocsistemcase.data.repository
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.kocsistemcase.data.api.ApiServices
-import com.example.kocsistemcase.data.dto.ItunesResponse
+import com.example.kocsistemcase.data.dto.MusicResponse
 import retrofit2.HttpException
 import java.io.IOException
 
-class ItunesPagingDataSource(private val apiServices: ApiServices) :
-    PagingSource<Int, ItunesResponse.Result>() {
-    override fun getRefreshKey(state: PagingState<Int, ItunesResponse.Result>): Int? {
+class MusicPagingDataSource(private val apiServices: ApiServices) :
+    PagingSource<Int, MusicResponse.Result>() {
+    override fun getRefreshKey(state: PagingState<Int, MusicResponse.Result>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ItunesResponse.Result> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MusicResponse.Result> {
         val page = params.key ?: PAGE_INDEX
         val offset =
             if (params.key != null) ((page - 1) * NETWORK_PAGE_SIZE) + 1 else NETWORK_PAGE_SIZE

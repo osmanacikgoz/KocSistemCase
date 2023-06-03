@@ -1,8 +1,8 @@
 package com.example.kocsistemcase.di
 
 import com.example.kocsistemcase.data.api.ApiServices
-import com.example.kocsistemcase.data.source.ItunesDataSource
-import com.example.kocsistemcase.data.source.ItunesDataSourceImpl
+import com.example.kocsistemcase.data.source.MusicDataSource
+import com.example.kocsistemcase.data.source.MusicDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ object SourceModule {
 
     @Provides
     @Singleton
-    fun provideDataSource(apiServices: ApiServices): ItunesDataSource {
-        return ItunesDataSourceImpl(apiServices)
+    fun provideDataSource(apiServices: ApiServices): MusicDataSource {
+        return MusicDataSourceImpl(apiServices)
     }
 }

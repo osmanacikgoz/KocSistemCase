@@ -1,8 +1,6 @@
 package com.example.kocsistemcase.di
 
 import com.example.kocsistemcase.data.api.ApiServices
-import com.example.kocsistemcase.data.repository.ItunesRepository
-import com.example.kocsistemcase.data.repository.ItunesRepositoryImpl
 import com.example.kocsistemcase.util.Constant
 import dagger.Module
 import dagger.Provides
