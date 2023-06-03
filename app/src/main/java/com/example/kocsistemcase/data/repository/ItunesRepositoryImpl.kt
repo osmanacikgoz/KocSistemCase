@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
-class MovieRepositoryImpl @Inject constructor(
+class ItunesRepositoryImpl @Inject constructor(
     private val itunesDataSource: ItunesDataSource
 ) : ItunesRepository {
     override fun getItunes(): Flow<PagingData<ItunesResponse.Result>> {
