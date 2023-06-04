@@ -11,4 +11,7 @@ data class MusicEntity(
     val artistName: String,
     val artistViewUrl: String,
     val artworkUrl100: String,
+    val releaseDate: String,
+    val collectionPrice: Double,
+    val trackName: String
 )

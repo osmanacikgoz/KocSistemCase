@@ -103,6 +103,9 @@ fun MusicResponse.Result.toEntityModel(): MusicEntity {
         artistId = artistId,
         artistName = artistName,
         artistViewUrl = artistViewUrl,
-        artworkUrl100 = artworkUrl100
+        artworkUrl100 = artworkUrl100,
+        releaseDate = releaseDate,
+        collectionPrice = collectionPrice,
+        trackName = trackName
     )
 }
