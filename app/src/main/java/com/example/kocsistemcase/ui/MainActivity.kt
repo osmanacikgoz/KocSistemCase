@@ -1,8 +1,9 @@
-package com.example.kocsistemcase
+package com.example.kocsistemcase.ui
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kocsistemcase.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
