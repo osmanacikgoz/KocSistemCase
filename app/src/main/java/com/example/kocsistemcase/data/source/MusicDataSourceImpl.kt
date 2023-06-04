@@ -5,19 +5,21 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.kocsistemcase.data.api.ApiServices
 import com.example.kocsistemcase.data.dto.MusicResponse
+import com.example.kocsistemcase.data.local.MusicDao
 import com.example.kocsistemcase.data.repository.MusicPagingDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MusicDataSourceImpl @Inject constructor(
-    private val apiServices: ApiServices
+    private val apiServices: ApiServices,
+    private val musicDao: MusicDao
 ) : MusicDataSource {
     override fun getItunes(): Flow<PagingData<MusicResponse.Result>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20
             ),
-            pagingSourceFactory = {MusicPagingDataSource(apiServices)}
+            pagingSourceFactory = {MusicPagingDataSource(apiServices,musicDao)}
         ).flow
     }
 }

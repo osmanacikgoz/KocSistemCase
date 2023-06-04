@@ -4,10 +4,12 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.kocsistemcase.data.api.ApiServices
 import com.example.kocsistemcase.data.dto.MusicResponse
+import com.example.kocsistemcase.data.dto.toEntityModel
+import com.example.kocsistemcase.data.local.MusicDao
 import retrofit2.HttpException
 import java.io.IOException
 
-class MusicPagingDataSource(private val apiServices: ApiServices) :
+class MusicPagingDataSource(private val apiServices: ApiServices, private val musicDao: MusicDao) :
     PagingSource<Int, MusicResponse.Result>() {
     override fun getRefreshKey(state: PagingState<Int, MusicResponse.Result>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -23,6 +25,9 @@ class MusicPagingDataSource(private val apiServices: ApiServices) :
 
         return try {
             val response = apiServices.getItunes(offset, params.loadSize)
+            musicDao.insert(response.results.map {
+                it.toEntityModel()
+            })
             LoadResult.Page(
                 data = response.results,
                 prevKey = if (page == PAGE_INDEX) null else page - 1,

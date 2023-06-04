@@ -1,6 +1,7 @@
 package com.example.kocsistemcase.di
 
 import com.example.kocsistemcase.data.api.ApiServices
+import com.example.kocsistemcase.data.local.MusicDao
 import com.example.kocsistemcase.data.source.MusicDataSource
 import com.example.kocsistemcase.data.source.MusicDataSourceImpl
 import dagger.Module
@@ -15,7 +16,7 @@ object SourceModule {
 
     @Provides
     @Singleton
-    fun provideDataSource(apiServices: ApiServices): MusicDataSource {
-        return MusicDataSourceImpl(apiServices)
+    fun provideDataSource(apiServices: ApiServices,musicDao:MusicDao): MusicDataSource {
+        return MusicDataSourceImpl(apiServices,musicDao)
     }
 }

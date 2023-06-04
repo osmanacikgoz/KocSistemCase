@@ -1,6 +1,7 @@
 package com.example.kocsistemcase.data.dto
 
 
+import com.example.kocsistemcase.data.local.MusicEntity
 import com.google.gson.annotations.SerializedName
 
 data class MusicResponse(
@@ -8,7 +9,7 @@ data class MusicResponse(
     val resultCount: Int,
     @SerializedName("results")
     val results: List<Result>
-){
+) {
     data class Result(
         @SerializedName("artistId")
         val artistId: Int,
@@ -94,5 +95,14 @@ data class MusicResponse(
         val trackViewUrl: String,
         @SerializedName("wrapperType")
         val wrapperType: String
+    )
+}
+
+fun MusicResponse.Result.toEntityModel(): MusicEntity {
+    return MusicEntity(
+        artistId = artistId,
+        artistName = artistName,
+        artistViewUrl = artistViewUrl,
+        artworkUrl100 = artworkUrl100
     )
 }
