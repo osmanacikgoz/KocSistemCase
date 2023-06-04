@@ -13,6 +13,7 @@ import com.example.kocsistemcase.ui.track_grid.TrackGridFragment
 import com.example.kocsistemcase.util.PageType
 import com.example.kocsistemcase.util.showFragment
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -34,23 +35,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNavBarItemSelectedListener() {
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.artist -> {
-                    setCurrentFragment(PageType.ARTIST)
+        binding.apply {
+            bottomNavigation.setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.artist -> {
+                        setCurrentFragment(PageType.ARTIST)
+                    }
+                    R.id.track -> {
+                        setCurrentFragment(PageType.TRACK)
+                    }
+                    R.id.trackGrid -> {
+                        setCurrentFragment(PageType.TRACK_GRID)
+                    }
+                    R.id.prices-> {
+                        setCurrentFragment(PageType.PRICE)
+                    }
                 }
-                R.id.track -> {
-                    setCurrentFragment(PageType.TRACK)
-                }
-                R.id.trackGrid -> {
-                    setCurrentFragment(PageType.TRACK_GRID)
-                }
-                R.id.price -> {
-                    setCurrentFragment(PageType.PRICE)
-                }
+                true
             }
-            true
         }
+
     }
 
     private fun setCurrentFragment(pageType: PageType) {
