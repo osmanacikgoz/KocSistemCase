@@ -1,8 +1,9 @@
 package com.example.kocsistemcase.di
 
-import com.example.kocsistemcase.data.repository.MusicRepository
+import com.example.kocsistemcase.data.local.MusicDao
 import com.example.kocsistemcase.data.repository.MusicRepositoryImpl
 import com.example.kocsistemcase.data.source.MusicDataSource
+import com.example.kocsistemcase.domain.repository.MusicRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,10 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Provides
     @Singleton
-    fun provideItunesRepository(musicDataSource: MusicDataSource): MusicRepository {
-        return MusicRepositoryImpl(musicDataSource)
+    fun provideItunesRepository(
+        musicDataSource: MusicDataSource,
+        musicDao: MusicDao
+    ): MusicRepository {
+        return MusicRepositoryImpl(musicDataSource, musicDao)
     }
 }
