@@ -7,7 +7,6 @@ import com.example.kocsistemcase.data.local.MusicEntity
 import com.example.kocsistemcase.data.source.MusicDataSource
 import com.example.kocsistemcase.domain.repository.MusicRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,16 +16,15 @@ class MusicRepositoryImpl @Inject constructor(
     private val musicDataSource: MusicDataSource,
     private val musicDao: MusicDao
 ) : MusicRepository {
-    override fun getItunes(): Flow<PagingData<MusicResponse.Result>>  = flow{
-         musicDataSource.getItunes()
+    override fun getItunes(): Flow<PagingData<MusicResponse.Result>> {
+        return musicDataSource.getItunes()
+    }
+    override suspend fun getMusicList(): List<MusicEntity> {
+        return musicDao.getMusicList()
     }
 
-    override fun getMusicList(musicList: List<MusicEntity>): Flow<List<MusicEntity>> = flow {
-        musicDao.insert(musicList)
-    }
-
-    override fun getDeleteMusic(musicEntity: MusicEntity) {
-        musicDao.delete(musicEntity)
+    override suspend fun deleteMusicItem(musicItem: MusicEntity) {
+        musicDao.delete(musicItem)
     }
 
 

@@ -3,6 +3,7 @@ package com.example.kocsistemcase.data.dto
 
 import com.example.kocsistemcase.data.local.MusicEntity
 import com.google.gson.annotations.SerializedName
+import java.util.UUID
 
 data class MusicResponse(
     @SerializedName("resultCount")
@@ -100,6 +101,7 @@ data class MusicResponse(
 
 fun MusicResponse.Result.toEntityModel(): MusicEntity {
     return MusicEntity(
+        trackId = trackId,
         artistId = artistId,
         artistName = artistName,
         artistViewUrl = artistViewUrl,

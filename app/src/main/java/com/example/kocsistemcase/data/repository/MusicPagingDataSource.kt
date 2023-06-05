@@ -6,11 +6,37 @@ import com.example.kocsistemcase.data.api.ApiServices
 import com.example.kocsistemcase.data.dto.MusicResponse
 import com.example.kocsistemcase.data.dto.toEntityModel
 import com.example.kocsistemcase.data.local.MusicDao
+import com.google.gson.Gson
 import retrofit2.HttpException
 import java.io.IOException
 
-class MusicPagingDataSource(private val apiServices: ApiServices, private val musicDao: MusicDao) :
-    PagingSource<Int, MusicResponse.Result>() {
+class MusicPagingDataSource(
+    private val movieApi: ApiServices,
+    private val musicDao: MusicDao,
+) : PagingSource<Int, MusicResponse.Result>() {
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MusicResponse.Result> {
+        val page = params.key ?: STARTING_PAGE_INDEX
+        return try {
+            val response = movieApi.getItunes(20, page)
+            val apiResponse = Gson().fromJson(response, MusicResponse::class.java)
+            apiResponse?.results?.let {
+                val t = it.map { asdy -> asdy.toEntityModel() }
+                musicDao.insert(t)
+            }
+            LoadResult.Page(
+                data = apiResponse.results,
+                prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
+                nextKey = if (apiResponse.results.isEmpty()) null else page + 1
+            )
+        } catch (exception: IOException) {
+            LoadResult.Error(exception)
+        } catch (exception: HttpException) {
+            LoadResult.Error(exception)
+        }
+    }
+
+
     override fun getRefreshKey(state: PagingState<Int, MusicResponse.Result>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
@@ -18,32 +44,8 @@ class MusicPagingDataSource(private val apiServices: ApiServices, private val mu
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MusicResponse.Result> {
-        val page = params.key ?: PAGE_INDEX
-        val offset =
-            if (params.key != null) ((page - 1) * NETWORK_PAGE_SIZE) + 1 else NETWORK_PAGE_SIZE
-
-        return try {
-            val response = apiServices.getItunes(offset, params.loadSize)
-            musicDao.insert(response.results.map {
-                it.toEntityModel()
-            })
-            LoadResult.Page(
-                data = response.results,
-                prevKey = if (page == PAGE_INDEX) null else page - 1,
-                nextKey = if (response.results.isEmpty()) null else page + 1
-            )
-        } catch (exception: IOException) {
-            LoadResult.Error(exception)
-        } catch (exception: HttpException) {
-            LoadResult.Error(exception)
-        }
-
-    }
-
-
     companion object {
-        private const val NETWORK_PAGE_SIZE = 20
-        private const val PAGE_INDEX = 1
+        private const val STARTING_PAGE_INDEX = 1
     }
+
 }

@@ -1,6 +1,5 @@
 package com.example.kocsistemcase.data.api
 
-import com.example.kocsistemcase.data.dto.MusicResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,6 +9,5 @@ interface ApiServices {
     suspend fun getItunes(
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
-
-    ): MusicResponse
+    ): String
 }

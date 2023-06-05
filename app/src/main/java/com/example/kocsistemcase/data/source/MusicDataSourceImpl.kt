@@ -19,7 +19,7 @@ class MusicDataSourceImpl @Inject constructor(
             config = PagingConfig(
                 pageSize = 20
             ),
-            pagingSourceFactory = {MusicPagingDataSource(apiServices,musicDao)}
+            pagingSourceFactory = { MusicPagingDataSource(apiServices, musicDao) }
         ).flow
     }
 }

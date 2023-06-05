@@ -16,7 +16,7 @@ object SourceModule {
 
     @Provides
     @Singleton
-    fun provideDataSource(apiServices: ApiServices,musicDao:MusicDao): MusicDataSource {
-        return MusicDataSourceImpl(apiServices,musicDao)
+    fun provideDataSource(apiServices: ApiServices, musicDao: MusicDao): MusicDataSource {
+        return MusicDataSourceImpl(apiServices, musicDao)
     }
 }

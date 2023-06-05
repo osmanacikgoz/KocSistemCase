@@ -84,6 +84,7 @@ dependencies {
     // Retrofit & Gson
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_interceptor_version"
 
     // Paging

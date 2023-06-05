@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/artist"
+        android:id="@+id/musicFragment"
         android:title="Artist"
         android:icon="@drawable/baseline_person_24"/>
     <item
-        android:id="@+id/track"
+        android:id="@+id/trackFragment"
         android:title="Track"
         android:icon="@drawable/baseline_music_note_24"/>
     <item
-        android:id="@+id/trackGrid"
+        android:id="@+id/trackGridFragment"
         android:title="Track Grid"
         android:icon="@drawable/baseline_music_note_24"/>
     <item
-        android:id="@+id/prices"
+        android:id="@+id/priceFragment"
         android:title="Prices"
         android:icon="@drawable/baseline_price_check_24"/>
 </menu>

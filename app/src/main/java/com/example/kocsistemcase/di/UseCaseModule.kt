@@ -1,8 +1,7 @@
 package com.example.kocsistemcase.di
 
 import com.example.kocsistemcase.domain.repository.MusicRepository
-import com.example.kocsistemcase.domain.usecase.MusicUseCase
-import com.example.kocsistemcase.domain.usecase.MusicUseCaseImpl
+import com.example.kocsistemcase.domain.usecase.GetMusicListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +15,7 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideMusicUseCase(musicRepository: MusicRepository): MusicUseCase {
-        return MusicUseCaseImpl(musicRepository)
+    fun provideMusicUseCase(musicRepository: MusicRepository): GetMusicListUseCase {
+        return GetMusicListUseCase(musicRepository)
     }
 }
