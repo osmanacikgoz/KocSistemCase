@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.ActivityMainBinding
-import com.example.kocsistemcase.ui.artist.ArtistFragment
+import com.example.kocsistemcase.ui.music.MusicFragment
 import com.example.kocsistemcase.ui.price.PriceFragment
 import com.example.kocsistemcase.ui.track.TrackFragment
 import com.example.kocsistemcase.ui.track_grid.TrackGridFragment
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     private fun setCurrentFragment(pageType: PageType) {
         val selectedFragment = when (pageType) {
             PageType.ARTIST -> {
-                artistFragment ?: ArtistFragment()
+                artistFragment ?: MusicFragment()
             }
             PageType.TRACK -> {
                 trackFragment ?: TrackFragment()

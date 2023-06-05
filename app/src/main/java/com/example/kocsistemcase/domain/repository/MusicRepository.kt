@@ -6,6 +6,8 @@ import com.example.kocsistemcase.data.local.MusicEntity
 import kotlinx.coroutines.flow.Flow
 
 interface MusicRepository {
-    fun getItunes():Flow<PagingData<MusicResponse.Result>>
-    fun getDeleteMusic(musicEntity: MusicEntity)
+    fun getItunes(): Flow<PagingData<MusicResponse.Result>>
+
+    fun getMusicList(musicList: List<MusicEntity>): Flow<List<MusicEntity>>
+    fun getDeleteMusic(musicId:Int):List<MusicEntity>
 }

@@ -1,4 +1,4 @@
-package com.example.kocsistemcase.ui
+package com.example.kocsistemcase.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
