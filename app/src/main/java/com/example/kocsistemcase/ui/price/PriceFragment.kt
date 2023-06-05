@@ -1,21 +1,31 @@
 package com.example.kocsistemcase.ui.price
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.FragmentPriceBinding
+import com.example.kocsistemcase.ui.adapter.PriceMusicAdapter
+import com.example.kocsistemcase.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-class PriceFragment:Fragment() {
-    private lateinit var binding:FragmentPriceBinding
+@AndroidEntryPoint
+class PriceFragment(
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPriceBinding.inflate(layoutInflater,container,false)
-        return binding.root
+) : BaseFragment<PriceViewModel, FragmentPriceBinding>() {
+    override val layoutId: Int = R.layout.fragment_price
+    override val viewModelClass: Class<PriceViewModel> = PriceViewModel::class.java
+    override fun initUI() {
+        val priceAdapter = PriceMusicAdapter(onItemClick = {})
+
+        binding.rvPriceList.adapter = priceAdapter
+
+        viewModel.priceMusicList.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                priceAdapter.setData(it)
+            }
+        }
+
     }
+
+
 }

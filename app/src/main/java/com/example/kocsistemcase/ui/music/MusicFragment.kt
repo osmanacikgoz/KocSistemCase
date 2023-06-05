@@ -1,5 +1,6 @@
 package com.example.kocsistemcase.ui.music
 
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.FragmentMusicBinding
@@ -9,17 +10,20 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MusicFragment(
-    override val layoutId: Int = R.layout.fragment_music,
+class MusicFragment() : BaseFragment<MusicViewModel, FragmentMusicBinding>() {
+
+    override val layoutId: Int = R.layout.fragment_music
+
     override val viewModelClass: Class<MusicViewModel> = MusicViewModel::class.java
-) : BaseFragment<MusicViewModel, FragmentMusicBinding>() {
+
     override fun initUI() {
         val musicPagingAdapter = MusicPagingAdapter(onItemClick = {
 
         })
-        binding.musicList.adapter = musicPagingAdapter
+        binding.rvMusicList.adapter = musicPagingAdapter
 
         viewModel.musicResponse.observe(viewLifecycleOwner) {
+            Log.d("","")
             lifecycleScope.launch {
                 musicPagingAdapter.submitData(it)
             }

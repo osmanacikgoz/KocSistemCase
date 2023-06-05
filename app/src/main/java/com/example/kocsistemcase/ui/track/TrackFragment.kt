@@ -1,21 +1,31 @@
 package com.example.kocsistemcase.ui.track
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.FragmentTrackBinding
+import com.example.kocsistemcase.ui.adapter.TrackAdapter
+import com.example.kocsistemcase.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-class TrackFragment : Fragment() {
-    private lateinit var binding: FragmentTrackBinding
+@AndroidEntryPoint
+class TrackFragment(
+) : BaseFragment<TrackViewModel, FragmentTrackBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentTrackBinding.inflate(layoutInflater, container, false)
-        return binding.root
+    override val layoutId: Int = R.layout.fragment_track
+    override val viewModelClass: Class<TrackViewModel> = TrackViewModel::class.java
+    override fun initUI() {
+        val trackAdapter = TrackAdapter(onItemClick = {
+
+        })
+        binding.rvTrackList.adapter = trackAdapter
+
+        viewModel.trackMusicList.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                trackAdapter.setData(it)
+            }
+        }
+
     }
+
 }

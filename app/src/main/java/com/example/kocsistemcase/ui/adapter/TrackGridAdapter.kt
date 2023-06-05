@@ -33,7 +33,6 @@ class TrackGridAdapter(private val onItemClick: (MusicEntity) -> Unit) :
         fun bind(item: MusicEntity) = with(binding) {
             artistName.text = item.artistName
             trackName.text = item.trackName
-            arrow.setOnClickListener { onItemClick.invoke(item) }
         }
     }
 

@@ -1,21 +1,32 @@
 package com.example.kocsistemcase.ui.track_grid
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.FragmentTrackGridBinding
+import com.example.kocsistemcase.ui.adapter.TrackGridAdapter
+import com.example.kocsistemcase.ui.base.BaseFragment
+import com.example.kocsistemcase.ui.track.TrackViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-class TrackGridFragment : Fragment() {
-    private lateinit var binding: FragmentTrackGridBinding
+@AndroidEntryPoint
+class TrackGridFragment : BaseFragment<TrackGridViewModel, FragmentTrackGridBinding>() {
+    override val layoutId: Int = R.layout.fragment_track_grid
+    override val viewModelClass: Class<TrackGridViewModel> = TrackGridViewModel::class.java
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentTrackGridBinding.inflate(layoutInflater, container, false)
-        return binding.root
+    override fun initUI() {
+
+        val trackGridAdapter = TrackGridAdapter(onItemClick = {
+
+        })
+        binding.rvgridTrackList.adapter = trackGridAdapter
+
+        viewModel.trackMusicList.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                trackGridAdapter.setData(it)
+            }
+        }
+
     }
+
 }
