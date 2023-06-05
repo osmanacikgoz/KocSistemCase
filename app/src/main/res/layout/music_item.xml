@@ -7,10 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/dark_gray"
         android:padding="4dp">
 
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/poster"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -19,55 +20,46 @@
             android:gravity="center"
             android:padding="12dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize25Percent" />
 
         <TextView
             android:id="@+id/artistName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:textColor="@color/black"
+            android:textColor="@color/ligth_gray"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/trackName"
+            app:layout_constraintEnd_toStartOf="@+id/include"
             app:layout_constraintStart_toEndOf="@id/poster"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Artist Name" />
 
         <TextView
             android:id="@+id/trackName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:textColor="@color/black"
+            android:textColor="@color/ligth_gray"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/include"
             app:layout_constraintStart_toEndOf="@id/poster"
             app:layout_constraintTop_toBottomOf="@id/artistName"
             tools:text="Track Name" />
 
-        <ImageView
-            android:id="@+id/arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:src="@drawable/baseline_arrow_right_alt_72"
-            app:layout_constraintBottom_toTopOf="@id/view"
+        <include
+            android:id="@+id/include"
+            layout="@layout/arrow_card"
+            android:layout_width="@dimen/arrow_card_width"
+            android:layout_height="@dimen/arrow_card_height"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/poster" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

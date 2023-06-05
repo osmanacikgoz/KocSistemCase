@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="#2d2e37"
         app:cardCornerRadius="8dp"
         app:cardElevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,47 +15,49 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:orientation="vertical"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/artistName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
-                android:textColor="@color/black"
+                android:textColor="#c4c4c4"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/trackName"
+                app:layout_constraintEnd_toStartOf="@+id/include"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
                 tools:text="Artist Name" />
 
             <TextView
                 android:id="@+id/trackName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:textColor="@color/black"
+                android:textColor="#c4c4c4"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/include"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/artistName"
                 tools:text="Track Name" />
 
-            <ImageView
-                android:id="@+id/arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:src="@drawable/baseline_arrow_right_alt_32"
-                app:layout_constraintBottom_toBottomOf="@id/trackName"
-                app:layout_constraintStart_toEndOf="@id/trackName"
-                app:layout_constraintTop_toTopOf="@id/artistName" />
+            <include
+                android:id="@+id/include"
+                layout="@layout/arrow_card"
+                android:layout_width="@dimen/arrow_card_width"
+                android:layout_height="@dimen/arrow_card_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
