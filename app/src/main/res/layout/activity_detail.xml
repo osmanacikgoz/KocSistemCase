@@ -1,90 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="@color/dark_gray"
-    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/musicImages"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="64dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_gray">
 
-
-    <TextView
-        android:id="@+id/musicName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textAlignment="center"
-        android:textColor="@color/ligth_gray"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/musicImages"
-        tools:text="Music Name" />
-
-    <TextView
-        android:id="@+id/artistName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textAlignment="center"
-        android:textColor="@color/ligth_gray"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/musicName"
-        app:layout_constraintStart_toStartOf="@id/musicName"
-        app:layout_constraintTop_toBottomOf="@id/musicName"
-        tools:text="Artist Name" />
-
-    <TextView
-        android:id="@+id/albumName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:textAlignment="center"
-        android:textColor="@color/ligth_gray"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/artistName"
-        tools:text="Album Name" />
-
-    <TextView
-        android:id="@+id/releaseDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:textAlignment="center"
-        android:textColor="@color/ligth_gray"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/albumName"
-        tools:text="Release Date" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:textAlignment="center"
-        android:textColor="@color/ligth_gray"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/releaseDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/albumName"
-        tools:text="Price" />
+        <ImageView
+            android:id="@+id/musicImages"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="64dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/musicName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textAlignment="center"
+            android:textColor="@color/ligth_gray"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/musicImages"
+            tools:text="Music Name" />
+
+        <TextView
+            android:id="@+id/artistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textAlignment="center"
+            android:textColor="@color/ligth_gray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/musicName"
+            app:layout_constraintStart_toStartOf="@id/musicName"
+            app:layout_constraintTop_toBottomOf="@id/musicName"
+            tools:text="Artist Name" />
+
+        <TextView
+            android:id="@+id/albumName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/ligth_gray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artistName"
+            tools:text="Album Name" />
+
+        <TextView
+            android:id="@+id/releaseDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/ligth_gray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/albumName"
+            tools:text="Release Date" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:textAlignment="center"
+            android:textColor="@color/ligth_gray"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/releaseDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/releaseDate"
+            tools:text="Price" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

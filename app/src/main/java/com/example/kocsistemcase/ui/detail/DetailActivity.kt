@@ -28,9 +28,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getMusicDetail(trackId: Int) {
-        lifecycleScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.Main) {
             viewModel.getMusicDetail(trackId).collect{musicEntity->
-                withContext(Dispatchers.Main){
                     with(binding){
                         musicImages.loadImage(musicEntity.artworkUrl100)
                         musicName.text = musicEntity.trackName
@@ -38,7 +37,6 @@ class DetailActivity : AppCompatActivity() {
                         albumName.text = musicEntity.collectionCensoredName
                         releaseDate.text = musicEntity.releaseDate
                         price.text = musicEntity.collectionPrice.toString()
-                    }
                 }
             }
         }
