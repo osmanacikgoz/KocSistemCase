@@ -7,5 +7,6 @@ import javax.inject.Inject
 class DeleteMusicUseCase @Inject constructor(
     private val musicRepository: MusicRepository
 ) {
-    operator fun invoke(musicEntity: MusicEntity) = musicRepository.deleteMusicItem(musicEntity)
+    suspend operator fun invoke(musicEntity: MusicEntity): Int =
+        musicRepository.deleteMusicItem(musicEntity)
 }

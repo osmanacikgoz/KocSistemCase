@@ -26,7 +26,7 @@ class MusicPagingAdapter(private val onItemClick: (MusicResponse.Result) -> Unit
     inner class ViewHolder(private val binding: MusicItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MusicResponse.Result) = with(binding) {
-            poster.loadImage(item.artworkUrl100)
+            poster.loadImage(url=item.artworkUrl100)
             artistName.text = item.artistName
             trackName.text = item.trackName
             binding.root.setOnClickListener {

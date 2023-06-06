@@ -7,10 +7,10 @@ import com.example.kocsistemcase.data.local.MusicEntity
 import com.example.kocsistemcase.databinding.MusicPriceItemBinding
 import com.example.kocsistemcase.util.loadImage
 
-class PriceMusicAdapter(private val onItemClick: (MusicEntity) -> Unit) :
+class PriceMusicAdapter(private val onItemClick: (MusicEntity, Boolean) -> Unit) :
     RecyclerView.Adapter<PriceMusicAdapter.PriceMusicViewHolder>() {
 
-    var dataList = emptyList<MusicEntity>()
+    var dataList = ArrayList<MusicEntity>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,19 +31,28 @@ class PriceMusicAdapter(private val onItemClick: (MusicEntity) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MusicEntity) = with(binding) {
             itemImage.loadImage(item.artworkUrl100)
-            artistName.text = item.artistName
+            tvArtistName.text = item.artistName
             trackName.text = item.trackName
             releaseDate.text = item.releaseDate
             price.text = item.collectionPrice.toString()
             root.setOnClickListener {
-                onItemClick.invoke(item)
+                onItemClick.invoke(item, false)
             }
 
+            imgDelete.setOnClickListener {
+                removeItem(item = item)
+                onItemClick(item, true)
+            }
         }
     }
 
-    fun setData(musicData: List<MusicEntity>) {
+    fun setData(musicData: ArrayList<MusicEntity>) {
         this.dataList = musicData
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(item: MusicEntity) {
+        dataList.remove(item)
         notifyDataSetChanged()
     }
 }

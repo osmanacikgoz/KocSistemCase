@@ -2,8 +2,6 @@
 
 -Music App An application that lists the music on iTunes
 
- # used technologies
-
 ## <br/><br/>Built With 🛠
 - [Kotlin](https://kotlinlang.org/)
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)

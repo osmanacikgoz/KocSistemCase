@@ -15,6 +15,6 @@ interface MusicDao {
     @Query("SELECT * FROM music WHERE trackId = :trackId")
     fun getMusic(trackId:Int):Flow<MusicEntity>
 
-    @Delete
-     fun delete(musicEntity: MusicEntity)
+     @Delete
+     fun delete(musicEntity: MusicEntity):Int
 }

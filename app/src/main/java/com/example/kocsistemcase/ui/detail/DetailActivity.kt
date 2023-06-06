@@ -3,9 +3,13 @@ package com.example.kocsistemcase.ui.detail
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.kocsistemcase.databinding.ActivityDetailBinding
 import com.example.kocsistemcase.util.loadImage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
@@ -18,25 +22,24 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val trackId = intent.extras?.getInt("trackId")
-        getMusicDetail(trackId)
-        getDetail()
-    }
-
-    private fun getMusicDetail(trackId: Int?) {
-        trackId?.let {
-            viewModel.musicDetail(it)
+        trackId?.let {safeTrackId->
+            getMusicDetail(trackId = safeTrackId)
         }
     }
-    private fun getDetail() {
-        viewModel.musicDetail.let {
-            binding.apply {
-                musicImages.loadImage(it.value?.artworkUrl100)
-                musicName.text = it.value?.trackName
-                artistName.text = it.value?.artistName
-                albumName.text = it.value?.collectionCensoredName
-                releaseDate.text = it.value?.releaseDate
-                price.text = it.value?.collectionPrice.toString()
 
+    private fun getMusicDetail(trackId: Int) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewModel.getMusicDetail(trackId).collect{musicEntity->
+                withContext(Dispatchers.Main){
+                    with(binding){
+                        musicImages.loadImage(musicEntity.artworkUrl100)
+                        musicName.text = musicEntity.trackName
+                        artistName.text = musicEntity.artistName
+                        albumName.text = musicEntity.collectionCensoredName
+                        releaseDate.text = musicEntity.releaseDate
+                        price.text = musicEntity.collectionPrice.toString()
+                    }
+                }
             }
         }
     }

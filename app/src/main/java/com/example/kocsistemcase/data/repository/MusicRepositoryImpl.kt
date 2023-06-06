@@ -28,8 +28,8 @@ class MusicRepositoryImpl @Inject constructor(
         return musicDao.getMusicList()
     }
 
-    override  fun deleteMusicItem(musicItem: MusicEntity) {
-        musicDao.delete(musicItem)
+    override suspend fun deleteMusicItem(musicItem: MusicEntity):Int {
+        return musicDao.delete(musicItem)
     }
 
 

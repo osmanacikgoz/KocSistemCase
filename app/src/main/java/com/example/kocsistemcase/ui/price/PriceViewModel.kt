@@ -31,9 +31,9 @@ class PriceViewModel @Inject constructor(
         }
     }
 
-    private fun deleteMusic(musicEntity: MusicEntity) {
+    suspend fun deleteMusic(musicEntity: MusicEntity) {
         val deleteMusic = deleteMusicUseCase.invoke(musicEntity)
-        //_priceDeleteMusic.postValue(deleteMusic)
+        // Gerçekten silinip silinmediği durumu
+        val isRemoved = deleteMusic == 1
     }
-
 }
