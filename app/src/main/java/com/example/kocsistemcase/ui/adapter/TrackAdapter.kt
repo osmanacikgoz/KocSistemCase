@@ -19,6 +19,7 @@ class TrackAdapter(private val onItemClick: (MusicEntity) -> Unit) :
             false
         )
     )
+
     override fun onBindViewHolder(holder: TrackAdapter.TrackViewHolder, position: Int) {
         holder.bind(dataList[position])
     }
@@ -32,7 +33,7 @@ class TrackAdapter(private val onItemClick: (MusicEntity) -> Unit) :
         fun bind(item: MusicEntity) = with(binding) {
             artistName.text = item.artistName
             trackName.text = item.trackName
-           // arrow.setOnClickListener { onItemClick.invoke(item) }
+            root.setOnClickListener { onItemClick.invoke(item) }
         }
     }
 

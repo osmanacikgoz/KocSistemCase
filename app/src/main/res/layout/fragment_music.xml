@@ -12,9 +12,9 @@
             layout="@layout/toolbar_item" />
 
 
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyle"
+        <include
+            android:id="@+id/progress"
+            layout="@layout/progress_bar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

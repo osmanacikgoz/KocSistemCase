@@ -12,16 +12,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PriceViewModel @Inject constructor(
-    private val priceListUseCase: PriceListUseCase
-) :BaseViewModel(){
+    private val priceListUseCase: PriceListUseCase,
+
+) : BaseViewModel() {
 
     private val _priceMusicList = MutableLiveData<List<MusicEntity>>()
-    val priceMusicList  get() = _priceMusicList
+    val priceMusicList get() = _priceMusicList
+
+    private val _priceDeleteMusic = MutableLiveData<MusicEntity>()
+    val priceDeleteMusic get() = _priceDeleteMusic
 
     init {
         viewModelScope.launch {
             val priceList = priceListUseCase.invoke(Unit)
             _priceMusicList.postValue(priceList)
+
         }
+
     }
 }

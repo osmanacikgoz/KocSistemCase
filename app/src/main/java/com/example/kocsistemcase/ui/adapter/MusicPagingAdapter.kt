@@ -29,6 +29,9 @@ class MusicPagingAdapter(private val onItemClick: (MusicResponse.Result) -> Unit
             poster.loadImage(item.artworkUrl100)
             artistName.text = item.artistName
             trackName.text = item.trackName
+            binding.root.setOnClickListener {
+                onItemClick.invoke(item)
+            }
         }
     }
 

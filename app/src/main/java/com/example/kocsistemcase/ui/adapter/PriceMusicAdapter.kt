@@ -35,6 +35,10 @@ class PriceMusicAdapter(private val onItemClick: (MusicEntity) -> Unit) :
             trackName.text = item.trackName
             releaseDate.text = item.releaseDate
             price.text = item.collectionPrice.toString()
+            root.setOnClickListener {
+                onItemClick.invoke(item)
+            }
+
         }
     }
 

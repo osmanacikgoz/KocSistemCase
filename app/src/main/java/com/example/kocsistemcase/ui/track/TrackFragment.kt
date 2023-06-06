@@ -1,8 +1,11 @@
 package com.example.kocsistemcase.ui.track
 
+import android.content.Intent
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.FragmentTrackBinding
+import com.example.kocsistemcase.ui.DetailActivity
 import com.example.kocsistemcase.ui.adapter.TrackAdapter
 import com.example.kocsistemcase.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +19,9 @@ class TrackFragment(
     override val viewModelClass: Class<TrackViewModel> = TrackViewModel::class.java
     override fun initUI() {
         val trackAdapter = TrackAdapter(onItemClick = {
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("trackId",it.trackId)
+            startActivity(intent)
 
         })
         binding.rvTrackList.adapter = trackAdapter
@@ -23,6 +29,7 @@ class TrackFragment(
         viewModel.trackMusicList.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 trackAdapter.setData(it)
+                binding.progress.visibility = View.GONE
             }
         }
 
