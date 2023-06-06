@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.FragmentTrackBinding
-import com.example.kocsistemcase.ui.DetailActivity
+import com.example.kocsistemcase.ui.detail.DetailActivity
 import com.example.kocsistemcase.ui.adapter.TrackAdapter
 import com.example.kocsistemcase.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint

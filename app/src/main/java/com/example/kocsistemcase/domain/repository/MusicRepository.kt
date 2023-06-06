@@ -10,8 +10,8 @@ interface MusicRepository {
 
     fun getItunes(): Flow<PagingData<MusicResponse.Result>>
 
+      fun getDetailMusic(trackId:Int):Flow<MusicEntity>
     suspend fun getMusicList(): List<MusicEntity>
-
-    suspend fun deleteMusicItem(musicItem:MusicEntity)
+     fun deleteMusicItem(musicItem:MusicEntity)
 
 }

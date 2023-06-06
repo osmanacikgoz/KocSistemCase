@@ -19,11 +19,16 @@ class MusicRepositoryImpl @Inject constructor(
     override fun getItunes(): Flow<PagingData<MusicResponse.Result>> {
         return musicDataSource.getItunes()
     }
+
+    override fun getDetailMusic(trackId: Int): Flow<MusicEntity> {
+        return musicDao.getMusic(trackId)
+    }
+
     override suspend fun getMusicList(): List<MusicEntity> {
         return musicDao.getMusicList()
     }
 
-    override suspend fun deleteMusicItem(musicItem: MusicEntity) {
+    override  fun deleteMusicItem(musicItem: MusicEntity) {
         musicDao.delete(musicItem)
     }
 

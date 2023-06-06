@@ -14,6 +14,7 @@ data class MusicEntity(
     val artworkUrl100: String? = null,
     val releaseDate: String? = null,
     val collectionPrice: Double? = null,
-    val trackName: String? = null
+    val trackName: String? = null,
+    val collectionCensoredName:String?=null
 
 )

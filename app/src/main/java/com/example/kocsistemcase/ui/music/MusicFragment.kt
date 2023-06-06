@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.example.kocsistemcase.R
 import com.example.kocsistemcase.databinding.FragmentMusicBinding
-import com.example.kocsistemcase.ui.DetailActivity
+import com.example.kocsistemcase.ui.detail.DetailActivity
 import com.example.kocsistemcase.ui.adapter.MusicPagingAdapter
 import com.example.kocsistemcase.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ class MusicFragment : BaseFragment<MusicViewModel, FragmentMusicBinding>() {
 
     override fun initUI() {
         val musicPagingAdapter = MusicPagingAdapter(onItemClick = {
-            val intent = Intent(requireContext(),DetailActivity::class.java)
+            val intent = Intent(requireContext(), DetailActivity::class.java)
             intent.putExtra("trackId",it.trackId)
             startActivity(intent)
 
